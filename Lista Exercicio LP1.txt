@@ -1,0 +1,1010 @@
+/* NOME:João Paulo Braga Navarro Bittencourt */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/******************************************************************************************************
+1) Escreva um programa em C que encontre o menor inteiro positivo n que atenda as seguintes condiÃ§Ãµes :
+n / 3 = x inteiro e resto 2
+n / 5 = y inteiro e resto 3
+n / 7 = z inteiro e resto 4
+*******************************************************************************************************/
+
+
+/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+
+int main() 
+{
+	int n=0,menor=0;
+	
+	while (menor==0)
+	{
+		if (n%3==2 && n%5==3 && n%7==4)
+			menor=n;
+		n++;
+	}
+	printf("O menor inteiro que satisfaz esses requisitos e' o: %d",menor);
+	return (0);
+}
+
+#include <stdio.h>
+
+/**********************************************************************************************************
+2) Escreva um programa em C que verifique se um determinado inteiro positivo que Ã© lido via teclado, Ã© ou
+nÃ£o primo.
+***********************************************************************************************************/
+
+int main()
+{
+	int n;
+	
+	printf("#PROGRAMA NUMERO PRIMO#\n\n");
+	printf("Digite um numero para ser testado:");
+	scanf("%d",&n);
+	if ((n!=1 && n!=2 && n!=3 && n!=5 && n!=7 ) && (n%2==0 || n%3==0 || n%5==0))
+		printf("O numero %d nao e' primo",n);
+	else
+		printf("O numero %d e' primo",n);
+
+		
+	return(0);
+	
+}
+
+#include <stdio.h>
+
+/***************************************************************************************************************
+3) Um inteiro perfeito n Ã© igual a soma de todos os seus divisores prÃ³prios. A faixa de seus divisores
+prÃ³prios vai de 1 a (n-1). Por exemplo : 6 Ã© um inteiro perfeito; a soma de todos os seus divisores prÃ³prios (
+1 + 2 + 3) Ã© igual a 6. Escreva um programa em C que determine se um nÃºmero no intervalo de 1 a 32767 Ã©
+um inteiro perfeito.
+****************************************************************************************************************/
+
+int main()
+{
+	int n,i,soma;
+	
+	for (n=1;n<=32767;n++)
+	{	soma=0;
+		for (i=1;i<=n-1;i++)
+		{
+			if (n%i==0)
+				soma=soma+i;
+		}
+		if (soma==n)
+		printf("O numero %d e' um perfeito!\n",n);
+	}
+		
+	return(0);
+}
+
+#include<stdio.h>
+
+/********************************************************************************
+4) Escreva um programa em C que calcule o fatorial de um nÃºmero inteiro positivo.
+*********************************************************************************/
+
+long fatorial(int a);
+
+int main()
+{
+	int n;
+	
+	printf("### PROGRAMA FATORIAL ###\n\n");
+	printf("Digite um numero para ser calculado seu fatorial:");
+	scanf("%d",&n);
+	printf("O resultado serÃ¡:%ld",fatorial(n));
+	
+	return(0);
+}
+
+long fatorial(int a)
+{
+	long res;
+	
+	if (a==0)
+	{
+		res=1L;
+		return (res);
+	}
+	res=a*fatorial(a-1);
+	return(res);
+
+}
+
+/***************************************************************************************************
+5) O troco em moedas Ã© uma combinaÃ§Ã£o de moedas com os seguintes valores :
+R$ 1,00 ; 0,50; 0,25; 0,10; 0,05; 0,01
+Escreva um programa em C que leia qualquer valor em centavos (R$0,01 atÃ© R$1,00). Calcule e imprima
+seu equivalente em moedas. Encontre a soluÃ§Ã£o que utilize o menor nÃºmero possÃ­vel de moedas.
+****************************************************************************************************/
+#include <stdio.h>
+
+int main()
+{
+	int res,i;
+	float vetor [6] = {1.00,0.50,0.25,0.10,0.05,0.00999};float valor;
+	
+	printf("### PROGRAMA SELETOR DE MOEDAS ###\n\n");
+	printf("Digite um valor entre 0.01 e 1.00:");
+	scanf("%f",&valor);
+	
+	for (i=0;i<=6;i++)
+		{
+			res=valor/vetor[i];
+			if (res>=1)
+			{
+				printf("Numero de moedas de %1.2f:%d\n",vetor[i],res);
+				valor=(valor-(res*vetor[i]));
+			}
+		
+		}
+
+
+return(0);	
+	
+}
+
+/**********************************************************************************************************
+6) Um motorista acaba de retornar de um feriado prolongado. Em cada parada de reabastecimento ele
+registrou a leitura de seu odÃ´metro, a quantidade de gasolina comprada (suponha que ele tenha enchido o
+tanque cada vez) e o preÃ§o pago. AlÃ©m disso, suponha tambÃ©m que ele tenha enchido o tanque antes de
+partir e imediatamente apÃ³s retornar. Escreva um programa em C para ler, em primeiro lugar, o nÃºmero total
+de reabastecimentos feitos (incluindo o primeiro e o Ãºltimo) e, a seguir, os dados relativos Ã  compra de
+gasolina e calcular :
+a) a quilometragem obtida por litro de gasolina entre cada par de paradas de reabastecimento;
+b) a quilometragem obtida por litro de gasolina em toda a viagem
+c) custo do combustÃ­vel por quilometro rodado em toda a viagem
+************************************************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+	float listagastos [100][3];																				
+	int odometro,i,decisao,cont=1,total=0,aux;
+	float gasolina,price;/*****Gasolina em litros,odometro em kilometros, tanque em litros*****/
+	
+	printf("### PROGRAMA CONTROLE DE GASTOS ###\n\n");
+	
+	printf("Digite o valor ,em litros, de gasolina comprados para reabastecimento antes de iniciar viagem:");
+	scanf("%f",&gasolina);
+	listagastos[0][0]=gasolina;
+	printf("Digite o valor ,em KM's,marcado no odometro:");
+	scanf("%d",&odometro);
+	listagastos[0][1]=odometro;
+	printf("Digite o valor ,em reais,gasto para o reabastecimento de gasolina:");
+	scanf("%f",&price);
+	listagastos[0][2]=price;
+	total=total+price;/***Somando o gasto total,em reais, gasto em gasolina***/
+	
+	
+
+	for (i=1;i<=100;i++)
+	{	
+		printf("\n\n###  PARADA NUMERO %d  ###\n\n",i);
+		printf("Digite o valor ,em litros, de gasolina comprados para reabastecimento:");
+		scanf("%f",&gasolina);
+		cont=cont+1;/***Contando o nÃºmero de reabastecimentos***/
+		listagastos[i][0]=gasolina;
+		printf("Digite o valor ,em KM's,marcado no odometro:");
+		scanf("%d",&odometro);
+		if (odometro<=listagastos[i-1][1])/***Teste para saber se a KM do odometro foi digitada errado***/
+		{
+			while (odometro<=listagastos[i-1][1])
+			{
+				printf("\n### ERRO!!!O VALOR ATUAL DO ODOMETRO E'MENOR QUE NA ULTIMA PARADA. ###\n");
+				printf("Digite o valor ,em KM's,marcado no odometro:");
+				scanf("%d",&odometro);
+			}
+		}
+		listagastos[i][1]=odometro;
+		printf("Digite o valor ,em reais,gasto para o reabastecimento de gasolina:");
+		scanf("%f",&price);
+		listagastos[i][2]=price;
+		total=total+price;
+		printf("A viagem terminou?Digite 0 para nao;1 para sim:");
+		scanf("%d",&decisao);
+		if (decisao==1)
+		{
+			printf("\n\n###  PARADA NUMERO FINAL  ###\n\n");
+			printf("Digite o valor ,em litros, de gasolina comprados para reabastecimento apos a chegada:");
+			scanf("%f",&gasolina);
+			cont=cont+1;
+			listagastos[i+1][0]=gasolina;
+			printf("Digite o valor ,em KM's,marcado no odometro:");
+			scanf("%d",&odometro);
+				if (odometro<=listagastos[i][1])
+				{
+					while (odometro<=listagastos[i][1])
+					{
+						printf("\n### ERRO!!!O VALOR ATUAL DO ODOMETRO E'MENOR QUE NA ULTIMA PARADA. ###\n");
+						printf("Digite o valor ,em KM's,marcado no odometro:");
+						scanf("%d",&odometro);
+					}
+				}
+			listagastos[i+1][1]=odometro;
+			printf("Digite o valor ,em reais,gasto para o reabastecimento de gasolina:");
+			scanf("%f",&price);
+			listagastos[i+1][2]=price;
+			total=total+price;
+
+			break;
+		}
+	}
+	printf("\n\nA quantidade total de reabastecimentos foi de %d\n",cont);
+	printf("O total gasto em reabastecimento foi de %d\n reais",total);
+	
+	for (i=1;i<=100;i++)/***Calcular item a***/
+	{
+		if (listagastos[i][0]!=0)
+		{
+			aux=(listagastos[i][1]-listagastos[i-1][1])/listagastos[i][0];
+			printf("\n\n### KM POR LITRO DE GASOLINA ENTRE AS PARADAS: ###\n");
+			printf("PARADA NUMERO %d:%d km/litro",i,aux);
+		}
+		else
+		{
+			break;
+		}
+		
+	}
+	
+	aux=0;
+	for (i=1;i<=100;i++)/***Calcular item b***/
+	{
+		if (listagastos[i][0]!=0)
+		{
+			aux=aux+listagastos[i][0];
+		}
+		else
+		{
+			printf("\n\n### KM POR LITRO DE GASOLINA ENTRE A PRIMEIRA E ULTIMA PARADA:%.2f km/litro ###\n",(listagastos[i-1][1]-listagastos[0][1])/aux);
+			break;
+
+		}
+	}
+		
+	aux=0;
+	for (i=1;i<=100;i++)/***Calcular item c***/
+	{
+		if (listagastos[i][2]!=0)
+		{
+			aux=aux+listagastos[i][2];
+		}
+		else
+		{
+			printf("\n\n### CUSTO DO COMPUSTIVEL POR KM ENTRE A PRIMEIRA E ULTIMA PARADA:%.2f reais/km ###\n",aux/(listagastos[i-1][1]-listagastos[0][1]));
+			break;
+
+		}
+	}
+
+	
+	return(0);
+	
+}
+
+/*******************************************************************************************************
+7) Escreva um programa em C onde, se possa representar os nomes e as notas de alunos de um curso da
+universidade. O programa deverÃ¡ imprimir os nomes dos cinco alunos que obtiverem as maiores notas
+acima da mÃ©dia da turma. Considerar que a turma tenha 50 alunos. Usar a estrutura multivalorada vista em
+sala de aula.
+********************************************************************************************************/
+
+#include<stdio.h>
+
+int main()
+{
+	struct info
+	{
+		char nome[32];
+		float nota;
+	};
+	struct info aluno[50];
+	int i,j;
+	float maior[5]={0,0,0,0,0};
+	
+	for (i=0;i<=49;i++)
+	{
+		printf("Digite o nome do aluno:");
+		scanf("%s",aluno[i].nome);
+		printf("Digite a nota deste aluno:");
+		scanf("%f",&aluno[i].nota);
+		printf("\n");	
+	}
+	for (i=0;i<=49;i++)
+	{
+		for (j=0;i<=4;j++)
+		{
+			if (aluno[i].nota>=maior[j])
+			{
+				maior[j]=i;
+				break;
+			}
+		}
+	}
+	printf("Os 5 alunos com as maiores notas foram:\n");
+	for (j=0;j<=4;j++)
+	{
+		printf("Nome:%s\nNota:%0.2f\n\n",aluno[j].nome,aluno[j].nota);	
+	}
+
+	return(0);
+}
+
+/****************************************************************************************************
+8)Para um vetor A de 50 nÃºmeros inteiros, escrever um programa em C que determine o maior e o segundo
+maior elemento desse vetor. Assumir que todos os elementos sÃ£o distintos.
+****************************************************************************************************/
+
+#include<stdio.h>
+
+int main()
+{
+	int vetor[10]={8,5,3,2,7,6,10,9,1,4};
+	int i,maior=0,segmaior=0;
+	
+	for (i=0;i<=9;i++)
+	{
+		if (vetor[i]>maior)
+		{
+			maior=vetor[i];
+		}
+		else if (vetor[i]>segmaior)
+		{
+			segmaior=vetor[i];
+		}
+	
+	}
+	
+	printf("Os dois maiores elementos ,desse vetor, sao: %d e %d",maior,segmaior);
+	
+	return(0);
+	
+}
+
+/****************************************************************************************************
+9) Escrever um programa em C que calcule e imprima o nÃºmero de caracteres distintos presentes em uma
+cadeia de caracteres dada. Considerar o tamanho mÃ¡ximo da cadeia como sendo de 80 colunas.
+****************************************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+	char cadeia[80];
+	char imprime[80];
+	int i,j,cont,igual;
+	
+	printf("### PROGRAMA RECONHECEDOR DE CARACTERES DISTINTOS ###\n\n");
+	printf("Digite uma palavra ou frase:");
+	gets(cadeia);
+	
+	for (i=0;i<=80;i++)
+	{	
+		igual=0;
+		if (cadeia[i]==0)
+		{
+			break;
+		}
+		else if (i==0)
+		{
+			imprime[i]=cadeia[i];
+			cont=cont+1;
+		}
+		for (j=0;j<=i;j++)
+		{
+			if (imprime[j]==cadeia[i])
+			{
+				igual=igual+1;
+			}
+		}
+		if (igual==0)
+		{
+			imprime[cont]=cadeia[i];
+			cont=cont+1;
+		}
+	}
+	
+	printf("Cadeia sem caracteres repetidos:%s\n",imprime);
+	printf("Numeros de caracteres distintos:%d",cont);
+	
+	return(0);
+}
+
+/****************************************************************************************************
+10)Escrever um programa em C que calcule a frequÃªncia de uso de cada palavra dentro de uma cadeia de
+caracteres que possui diversas palavras. Considerar o tamanho mÃ¡ximo da cadeia como sendo de 80
+colunas.
+****************************************************************************************************/
+
+#include <stdio.h>
+#include <string.h>
+
+int main ()
+{
+	char frase[80],palavra[20];
+	int decisao=1,inicio=0,fim=0,start=0,ocorrencia=0,flag=1,cont=0;
+	
+	printf("### PROGRAMA CONTADOR DE PALAVRAS ###\n\n");
+	printf("Digite a Frase:");
+	gets(frase);
+	printf("Digite a palavra a ser Buscada:");
+	gets(palavra);
+	
+	
+
+while (flag==1)
+	{
+		if (palavra[start]==frase[fim] && frase[fim]!=0)
+			{
+				cont++;
+				start++;
+			}
+		else if (frase[fim]==32 || frase[fim]==0 || palavra[start]==0)
+			{
+				if (strlen(palavra)==cont && (frase[fim]==0 || frase[fim]==32))
+					{
+						ocorrencia++;
+						start=0;
+						cont=0;
+						if (frase[fim]==0)
+						{
+						 flag=0;	
+						}	
+					}
+				else if(frase[fim]==0)
+				{
+					flag=0;
+				}
+				else
+				{
+					start=0;
+					cont=0;
+				}	
+			}
+			
+		fim++;
+	}
+	printf("A palavra %s se repete %d veze(s)na frase\n",palavra,ocorrencia);
+	
+	return(0);
+}
+
+/***********************************************************************************************
+11) Escrever um programa em C que leia uma cadeia de caracteres e imprima todas as palavras que
+contenham trÃªs ou mais vogais.
+************************************************************************************************/
+
+#include<stdio.h>
+#include<string.h>
+
+int main ()
+{
+	char frase [80],palavra[20];
+	int flag=1,fim=0,cont=0,i=0;
+	
+	printf("### PROGRAMA CONTADOR DE VOGAIS ###\n\n");
+	printf("Digite a frase:");
+	gets(frase);
+	printf("As palavras que possuem tres ou mais vogais sao:\n\n");
+	
+	while (flag==1)
+	{
+		if(frase[fim]!=32)
+		{
+			palavra[i]=frase[fim];
+			i++;
+			if (frase[fim]==97 || frase[fim]==101 || frase[fim]==105 || frase[fim]==111 || frase[fim]==117)
+			{
+				cont++;
+			}		
+		}
+		else if (frase[fim]==32 && cont>=3)
+			{
+				printf("A palavra %s tem tres ou mais vogais.\n",palavra);
+				i=0;cont=0;
+				while (palavra[i]!=0)
+				{
+					palavra[i]=0;
+					i++;
+				}
+				i=0;	
+			}
+		else if (frase[fim]==32 && cont<3)	
+		{
+			i=0;cont=0;
+			while (palavra[i]!=0)
+			{
+				palavra[i]=0;
+				i++;
+			}
+			i=0;
+		}
+		else if (frase[fim]==0)
+		{
+			flag=0;
+		}
+		fim++;			
+	}
+	
+	return(0); 	
+}
+
+/******************************************************************************************************
+12)Escrever um programa em C que leia um valor inteiro (limite na casa do milhar), e o imprima em forma
+de caracteres, ou seja, por extenso. Ex. : 98 = noventa e oito.
+******************************************************************************************************/
+
+#include<stdio.h>
+
+int main()
+{
+   int numero,milhar,centena,dezena,unidade;
+
+   printf("### PROGRAMA NUMERO POR EXTENSO ###\n\n");
+   printf("Digite um numero:");
+   scanf("%d", &numero);
+
+   milhar=numero/1000;
+   numero=numero%1000;
+   centena=numero/100;
+   numero=numero%100;
+   dezena=numero/10;
+   unidade=numero%10;
+   
+   switch(milhar)
+   {
+    	case 1: printf("Um mil"); break;
+        case 2: printf("Dois mil"); break;
+        case 3: printf("Tres mil"); break;
+        case 4: printf("Quatro mil"); break;
+        case 5: printf("Cinco mil"); break;
+        case 6: printf("Seis mil"); break;
+        case 7: printf("Sete mil"); break;
+        case 8: printf("Oito mil"); break;
+        case 9: printf("Nove mil"); break;
+    }
+    if ((centena>0 || dezena>0 || unidade>0) && (milhar>0))
+   	{
+   		printf(" e ");
+   	}
+   	else if ((centena>0) && (dezena==0 && unidade==0))
+   	{
+   		printf(" ");
+	}
+                 
+   switch(centena)
+   {
+    	case 1: 
+    		if (dezena==0 && unidade==0)
+    		{
+    			printf("Cem"); 	
+    			break;
+			}
+			else
+			{
+				printf("Cento"); 
+				break;	
+			}	
+        case 2: printf("Duzentos"); break;
+        case 3: printf("Trezentos"); break;
+        case 4: printf("Quatrocentos"); break;
+        case 5: printf("Quinhentos"); break;
+        case 6: printf("Seiscentos"); break;
+        case 7: printf("Setecentos"); break;
+        case 8: printf("Oitocentos"); break;
+        case 9: printf("Novecentos"); break;
+    }
+    if ((dezena>0 || unidade>0) && (centena>0))
+   	{
+   		printf(" e ");
+   	}
+  
+   switch(dezena)
+   {
+   		case 1: 
+   		    if(unidade==0)
+   		    {
+   		    	printf("Dez"); break;	
+			}
+		    else if (unidade==1)
+		    {
+		    	printf("Onze"); break;	
+			}	
+		    else if (unidade==2)
+		    {
+		    	printf("Doze"); break;	
+			}
+		    else if (unidade==3)
+		    {
+		    	printf("Treze"); break;
+			}	
+		    else if (unidade==4)
+		    {
+		    	printf("Quatorze"); break;
+			}    	
+		    else if (unidade==5)
+		    {
+		    	printf("Quinze"); break;
+			}	
+		    else if (unidade==6)
+		    {
+		    	printf("Dezesseis"); break;
+			}
+		    else if (unidade==7)
+		    {
+		    	printf("Dezessete"); break;
+			}	
+		    else if (unidade==8)
+		    {
+		    	printf("Deezoito"); break;
+			}	
+		    else if (unidade==9)
+		    {
+		    	printf("Dezenove"); break;
+			}
+		    	
+        case 2: printf("Vinte"); break;
+        case 3: printf("Trinta"); break;
+        case 4: printf("Quarenta"); break;
+        case 5: printf("Cinquenta"); break;
+        case 6: printf("Sessenta"); break;
+        case 7: printf("Setenta"); break;
+        case 8: printf("Oitenta"); break;
+        case 9: printf("Noventa"); break;
+    }
+    if ((unidade>0) && (dezena!=1))
+   	{
+   		printf(" e ");
+   	}
+   
+   switch(unidade)
+   {
+        case 0: break;
+        case 1: 
+        	if (dezena!=1)
+				printf("um"); break;
+        case 2: 
+        	if (dezena!=1)
+				printf("dois"); break;
+        case 3: 
+        	if (dezena!=1)
+				printf("tres"); break;
+        case 4: 
+        	if (dezena!=1)
+				printf("quatro"); break;
+        case 5: 
+        	if (dezena!=1)
+				printf("cinco"); break;
+        case 6: 
+        	if (dezena!=1)
+				printf("seis"); break;
+        case 7: 
+			if (dezena!=1)
+				printf("sete"); break;
+        case 8: 
+			if (dezena!=1)
+				printf("oito"); break;
+        case 9: 
+			if (dezena!=1)
+				printf("nove"); break;
+    }
+	
+return(0);		 
+ }
+		  	
+
+/**************************************************************************************************
+13) Dados trÃªs vetores com 10 posiÃ§Ãµes cada um, preenchidos com nÃºmeros inteiros, fazer um programa
+em C que, apÃ³s a leitura dos vetores coloque-os em ordem crescente.
+**************************************************************************************************/
+
+int main()
+{
+	int i,j;
+	int vetor1 [10]={' ',5,3,8,2,7,6,10,9,1}; /*vetor1*/
+	int vetor2 [10]={' ',7,2,9,3,4,6,1,8,5};/*vetor2*/
+	int vetor3 [10]={' ',4,1,10,8,7,5,2,6,3};/*vetor3*/
+	
+	for (i=2;i<=9;i++)
+	{
+		j=i;
+		vetor1[0]=vetor1[i];
+		
+		while (vetor1[j-1]>vetor1[0])
+		{
+			vetor1[j]=vetor1[j-1];
+			j=j-1;
+		}
+		vetor1[j]=vetor1[0];
+	}
+	for (i=2;i<=9;i++)
+	{
+		j=i;
+		vetor2[0]=vetor2[i];
+		
+		while (vetor2[j-1]>vetor2[0])
+		{
+			vetor2[j]=vetor2[j-1];
+			j=j-1;
+		}
+		vetor2[j]=vetor2[0];
+	}
+	for (i=2;i<=9;i++)
+	{
+		j=i;
+		vetor3[0]=vetor3[i];
+		
+		while (vetor3[j-1]>vetor3[0])
+		{
+			vetor3[j]=vetor3[j-1];
+			j=j-1;
+		}
+		vetor3[j]=vetor3[0];
+	}
+	return(0);
+}
+
+/**************************************************************************************************
+14) FaÃ§a um programa em C que simule um cronÃ´metro com horas, minutos e segundos. A simulaÃ§Ã£o
+deverÃ¡ mostrar no vÃ­deo o cronÃ´metro no seguinte formato HH: MM: SS. Inicialmente o cronÃ´metro serÃ¡
+zerado ( 00: 00: 00 ), sendo que os segundos comeÃ§arÃ£o a ser incrementados, depois os minutos e
+depois as horas. Lembre-se que a cada 60 segundos os minutos deverÃ£o ser incrementados, depois os
+minutos voltarÃ£o a zero. Quando as horas estiverem prestes a chegar em 25, o cronÃ´metro deverÃ¡
+voltar a zero ( 00: 00: 00 ).
+***************************************************************************************************/
+  
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  int hora,min,seg; 
+  int i;
+  int u = 0;
+  hora = 0, min = 0, seg = 0; 
+
+  system("clear");
+  printf("\n ### INICIANDO CRONOMETRO ###\n");
+  getchar();
+  system("clear");
+  
+  while (hora < 25)
+  { 
+    while (min < 60)
+    { 
+      while (seg < 60)
+      {         
+        if (seg < 10)
+        {
+          if (min < 10)
+          {
+            if (hora < 10)
+              printf("\n 0%d:0%d:0%d",hora,min,seg);
+            else 
+              printf("\n %d:0%d:0%d",hora,min,seg);
+          }
+          else
+          {
+            if (hora < 10) 
+              printf("\n 0%d:%d:0%d",hora,min,seg);
+            else 
+              printf("\n %d:%d:0%d",hora,min,seg);
+          }
+        }
+        else
+        {
+          if (min > 9)
+          {
+            if (hora > 9)
+              printf("\n %d:%d:%d",hora,min,seg);
+            else
+              printf("\n 0%d:%d:%d",hora,min,seg);
+          }        
+          else
+          {
+            if (hora > 9)            
+              printf("\n %d:0%d:%d",hora,min,seg);
+            else 
+              printf("\n 0%d:0%d:%d",hora,min,seg);
+          }
+       }      
+        for (i = 0; i < 1; i++)                  
+          u++;         
+        seg = seg + 1;      
+        system("clear");
+      }
+      seg = 0; 
+      min = min + 1;     
+    }
+    min = 0; 
+    hora = hora + 1;  
+    if (hora > 24)
+    {
+      hora = 0; 
+    }         
+  } 
+  return(0);
+}  
+
+/******************************************************************************************************
+15) O Departamento de trÃ¢nsito do estado anotou dados de acidentes de trÃ¢nsito no Ãºltimo ano. Para cada
+motorista envolvido no acidente, tem-se as seguintes informaÃ§Ãµes:
+- Ano de nascimento;
+- Sexo (M - Masculino, F - Feminino)
+- ProcedÃªncia ( 0 - Capital, 1 - Interior, 2 - Outro estado);
+FaÃ§a um programa em C que :
+a) Calcule a porcentagem de motoristas com menos de 21 anos;
+b) Calcule quantas mulheres sÃ£o da capital;
+c) Calcule quantos motoristas do interior do estado tem idade maior que 60 anos;
+d) Verifique se existe alguma mulher com idade maior que 60 anos;
+********************************************************************************************************/
+
+int main()
+{
+	struct motorista
+	{
+		int ano_nascimento;
+		char sexo[2];
+		int procedencia;
+	};
+	struct motorista dados[10];
+	int i,contador_21,porcentagem,contador_mulhercap=0,contador_motorista60=0,contador_mulher60=0;
+	
+	printf("### PROGRAMA DADOS DEPARTAMENTO DE TRANSITO ###\n\n");
+	
+	for (i=0;i<=9;i++)
+	{
+		printf("\nDados do motorista %d:\n\n",i+1);
+		printf("Digite o ano de nascimento do motorista:");
+		scanf("%d",&dados[i].ano_nascimento);
+		printf("Digite o sexo do motorista(Digite m para masculino/f para feminino):");
+		scanf("%s",dados[i].sexo);
+		while (dados[i].sexo[0]!='m' && dados[i].sexo[0]!='M' && dados[i].sexo[0]!='f' && dados[i].sexo[0]!='F')
+		{
+			printf("Este campo deve ser preenchido com 'm' ou 'f', de acordo com a instrucao acima!\n");
+			scanf("%s",dados[i].sexo);
+		}
+		printf("Digite a procedencia do motorista( 0 - Capital, 1 - Interior, 2 - Outro estado):");
+		scanf("%d",&dados[i].procedencia);
+		while (dados[i].procedencia!=0 && dados[i].procedencia!=1 && dados[i].procedencia!=2)
+		{
+			printf("Este campo deve ser preenchido com '0','1' ou '2', de acordo com a instrucao acima!");
+			scanf("%d",&dados[i].procedencia);
+		}	
+	}
+	for (i=0;i<=9;i++)
+	{
+		if(2019-dados[i].ano_nascimento<21)
+		{
+			contador_21++;
+		}			
+	}
+	porcentagem=(100*contador_21)/10;
+	printf("\nA porcentagem de motoristas com idade abaixo de 21 anos e' igual a:%d\n",porcentagem);
+	
+	for (i=0;i<=9;i++)
+	{
+		if((dados[i].sexo[0]=='f' || dados[i].sexo[0]=='F') && (dados[i].procedencia==0))
+		{
+			contador_mulhercap++;
+		}			
+	}
+	printf("A quantidade de mulheres provenientes da capital e' igual a:%d\n",contador_mulhercap);
+	
+	for (i=0;i<=9;i++)
+	{
+		if((dados[i].procedencia==1) && (2019-dados[i].ano_nascimento>60))
+		{
+			contador_motorista60++;
+		}			
+	}
+	printf("A quantidade de motoristas provenientes do interior com mais que 60 anos e' igual a:%d \n",contador_motorista60);
+
+	for (i=0;i<=9;i++)
+	{
+		if((dados[i].sexo[0]=='f' || dados[i].sexo[0]=='F') && (2019-dados[i].ano_nascimento>60))
+		{
+			contador_mulher60++;
+		}			
+	}
+	printf("Existem %d mulhere(s) com idade maior que 60 anos.\n",contador_mulher60);	
+	
+
+	return(0);
+
+}
+
+/******************************************************************************************************
+16) FaÃ§a um programa em C que atenda Ã s regras do seguinte jogo de dados. Dois jogadores estÃ£o
+confrontando-se entre si, usando dois dados, numerados de 1 atÃ© 6 (dado RAND(5) + 1). Vence uma
+rodada quem obtiver o maior nÃºmero no lanÃ§amento. Entretanto, caso um jogador obtiver um
+lanÃ§amento com dois dados iguais (por exemplo, 1 e 1, 2 e 2,....) e o outro jogador nÃ£o, o jogador que
+tiver lanÃ§ado a dupla ganha. Caso os dois jogadores fizerem o lanÃ§amento e o resultado for de duas
+duplas para os dois jogadores, ganha o jogador com a dupla maior. A disputa Ã© em 11 lanÃ§amentos.
+Indique o jogador vencedor ou se houve empate.
+*******************************************************************************************************/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+int main()
+{
+	int dado1,dado2,dado3,dado4,lancamento,r;
+	int soma_jogador1,soma_jogador2,ponto_jogador1=0,ponto_jogador2;
+	
+	for (lancamento=1;lancamento<=11;lancamento++)
+	{
+		printf("### Rodada numero %d ###\n\n",lancamento);
+		/* JOGADOR 1*/
+		r=rand();r%=6;
+		dado1=(r % 5)+1;
+		r=rand();r%=6;
+		dado2=(r % 5)+1;
+		soma_jogador1=dado1+dado2;
+		printf("Jogador 1=> dado1=%d,dado2=%d\n",dado1,dado2);
+		printf("Soma=%d\n\n",soma_jogador1);
+		/* JOGADOR 2*/
+		r=rand();r%=6;
+		dado3=(r % 5)+1;
+		r=rand();r%=6;
+		dado4=(r % 5)+1;
+		soma_jogador2=dado3+dado4;
+		printf("Jogador 2=> dado1=%d,dado2=%d\n",dado3,dado4);
+		printf("Soma=%d\n\n",soma_jogador2);
+		
+		if(dado1==dado2 && dado3==dado4)
+		{
+			if (soma_jogador1>soma_jogador2)
+			{
+				ponto_jogador1++;
+				printf("Jogador 1 venceu a Rodada!");
+			}
+			else if (soma_jogador2>soma_jogador1)
+			{
+				ponto_jogador2++;
+				printf("Jogador 2 venceu a Rodada!");
+			}
+		}
+		else if(dado1==dado2 && dado3!=dado4)
+		{
+			ponto_jogador1++;
+			printf("Jogador 1 venceu a Rodada!");
+		}
+		else if(dado1!=dado2 && dado3==dado4)
+		{
+			ponto_jogador2++;
+			printf("Jogador 2 venceu a Rodada!");
+		}
+		else if (soma_jogador1>soma_jogador2)
+		{
+			ponto_jogador1++;
+			printf("Jogador 1 venceu a Rodada!");
+		}
+		else if (soma_jogador2>soma_jogador1)
+		{
+			ponto_jogador2++;
+			printf("Jogador 2 venceu a Rodada!");
+		}
+	}
+	if (ponto_jogador1==ponto_jogador2)
+	{
+		printf("O jogo terminou empatado!\n");
+		printf("Total de Pontos Jogador 1:%d\n",ponto_jogador1);
+		printf("Total de Pontos Jogador 1:%d\n",ponto_jogador2);
+	}
+	else if(ponto_jogador1>ponto_jogador2)
+	{
+		printf("O jogador 1 venceu!\n");
+		printf("Total de Pontos Jogador 1:%d\n",ponto_jogador1);
+	}
+	else
+	{
+		printf("O jogador 2 venceu!\n");
+		printf("Total de Pontos Jogador 2:%d\n",ponto_jogador2);
+	}
+	
+	return(0);
+}

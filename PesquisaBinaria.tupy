@@ -1,0 +1,57 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Pesquisa Binária
+# Implementação por Paulo E. D. Pinto
+#
+# Exemplo de entrada:
+#    2 5 8 11 20 24 25 30 32 35 36 39 41 45      2 45 50 8 6 1
+# Saída:
+#   Achou  2  na posição  1
+#   Achou  45  na posição  14
+#   Não achou  50
+#   Achou  8  na posição  3
+#   Não achou  6
+#   Não achou 1
+#----------------------------------------------------------------
+visual oculto _indicadorC, _indicadorF <- " c -> 1:v", "f -> 1:v"
+
+visual exibir2(ref inteiro[] A, inteiro i, inteiro c, inteiro f):
+    retornar vetor(A, [i], juntar(["rankdir=\"BT\";", _indicadorC, cadeia(c), ":s;", \
+                                                      _indicadorF, cadeia(f), ":s"]))    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+inteiro PB(ref inteiro [] V, inteiro oculto k):
+#Dados: Vetor V ordenado, inteiro n=|V1|,  k 
+    inteiro oculto c, f, n; inteiro i
+    n <- |V|; ~~
+    c <- 1;   f  <- n;    
+    enquanto (c <= f):
+        i <- inteiro((c+f)/2)
+        B <- exibir2(V, i, c, f) ~~   
+        se (V[i] > k):       
+            f  <- i - 1
+        senão se (V[i] < k): 
+            c  <- i + 1
+        senão:  
+            parar
+    B <- exibir2(V, i, c, f) ~~       
+    se (V[i] != k):    
+        i <- nulo  
+    retornar i;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    
+inteiro oculto A[16], E[6], elem, p, i
+visual B, B1 ~~
+A[0] <- nulo;  A[1] <-2;
+para i <-2 até 14 incl.:
+    A[i] <- A[i-1]+inteiro_aleatório (3)+1
+A[15] <- nulo;  E[0] <- A[3];  E[1] <- A[7];  E[2] <- A[1]-3;
+para i <-3 até 5 inclusive:
+    E[i] <- inteiro_aleatório (50)
+B <- vetor(A) ~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+para i <- 0 até 5 incl.:
+    B1 <- vetor(E, [i]); B <- vetor(A); ~~
+    p <- PB(A, E[i])
+    se (p != nulo):
+        escrever("Achou ", E[i], " na posição ", p)
+    senão:
+        escrever("Não achou ", E[i])    

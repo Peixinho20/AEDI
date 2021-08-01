@@ -1,0 +1,38 @@
+----------------------------------------------------------------
+# Ordenação por Inserção em TuPy ~~
+# Implementação por Paulo E. D. Pinto ~~
+----------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+visual oculto _indicadorC, _indicadorF <- " i -> 1:v", "j -> 1:v"
+
+visual exibir2(ref inteiro[] A, inteiro i, inteiro c, inteiro f):
+    retornar vetor(A, [i, f-1], juntar(["rankdir=\"BT\";", _indicadorC, cadeia(c), ":s;", \
+                                                      _indicadorF, cadeia(f), ":s"]))    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Inserção(ref inteiro[] V):
+    inteiro i, j
+    para i <- 2..|V|: #varia de dois ao vetor V
+        j <- i  
+        V[0] <- V[i] #elemento inserido é guardado na posicao zero e depois realocado
+        B <- exibir2(V, 0, i, j) ~~    
+        enquanto V[j-1] > V[0]: #enquanto o elemento anterior for maior que o da posicao zero ele empurrará os outros a sua direita para a direita
+            V[j] <- V[j-1] #empurra para a direita os que ainda não foram analisados      
+            j <- j-1 #empurra para a esquerda os que já foram analisados
+            B <- exibir2(V, 0, i, j) ~~    
+        V[j] <- V[0] # fim do enquanto, e onde o elemento será inserido
+        B <- exibir2(V, 0, i, j) ~~ 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+inteiro oculto A[*], elem, i;
+visual B ~~
+
+elem <- nulo;  A <- inserir(A, elem);
+para i <-1 até 10 incl.:
+    elem <- inteiro_aleatório(50);  
+    A <- inserir(A, elem)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A[0..10] <- [0, 2, 7, 1, 8, 9, 10, 3, 5, 6, 4]
+B <- vetor(A) ~~
+Inserção(A)
+escrever(A)

@@ -1,0 +1,54 @@
+#--------------------------------------------------------------------
+# Cria listas encadeadas em Tupy
+# Implementação por Paulo Eustáquio
+#
+# Este programa não lê a entrada do usuário e cria uma lista com n nós de 
+# duas maneiras diferentes.
+#--------------------------------------------------------------------
+inteiro n<-6
+tipo No:
+    inteiro c
+    No prox
+
+visual V <- "" ~~
+----------------
+Cria1():
+    inteiro i, maior
+    para i <- 1 até n incl.:
+        p <- No()
+        p.c <- i
+        se i=1:
+            cab <- p
+        senão:
+            q.prox <- p
+        q <- p
+        V <- lista_encadeada(cab, "c", "prox") ~~
+    p.prox <- nulo
+
+No cab, p, q
+Cria1()
+
+
+Cria TrocaMenorMaior:
+	tipo no:
+		no pmenor, pmaior, pcomp1, pcomp2;
+		inteiro maior = -9999999, menor = 9999999;
+	
+	para(pcomp1 <- cabeça até pcomp1 != nulo; pcomp1 <- pcomp1.prox) 
+		se (pcomp1.k < menor)
+			menor <- pcomp1.k
+		se (pcomp1.k > maior)
+			maior <- pcomp1.k
+	
+	para(pcomp1 <- cabeça; pcomp1 != nulo; pcomp1 = pcomp1.prox)
+		se(pcomp1.prox.k == menor)
+			pmenor <- pcomp1
+		se(pcomp1.prox.k == maior)
+			pmaior <- pcomp1
+	
+	pmenor <- pcomp2
+	pmaior <- pcomp1
+	pcomp1 <- pcomp1.prox
+	pcomp2 <- pcomp2.prox
+	pmenor.prox.prox <- pcomp1
+	pmaior.prox.prox <- pcomp2

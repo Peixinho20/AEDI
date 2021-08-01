@@ -1,0 +1,46 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Merge - Versão 1 - com sentinelas
+# Implementação por Paulo E. D. Pinto
+#
+# <ATENÇÃO> - Este programa espera receber uma entrada contendo
+#              inteiros separados por espaço, que constituirão 
+#              a soma e a lista a ser pesquisada.
+#
+# Exemplo de entrada:
+# 5 6
+# 5 10 19 20 31
+# 2 5 7 20 21 29
+# Saí­da:
+#   2 5 5 7 10 19 20 20 21 29 31
+#----------------------------------------------------------------
+visual oculto _indicador <- "rankdir=\"BT\"; j -> 1:v"
+visual exibir(ref inteiro[] A, inteiro i, inteiro j):
+    retornar vetor(A, [i], juntar([_indicador, cadeia(j), ":s"]))
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Merge(ref inteiro [] V1, ref inteiro[] V2, ref inteiro [] V3):
+    inteiro oculto i, j, k, n, m
+  
+    i <- 1;  j <- 1;  n <- |V1|-1;  m <- |V2|-1;   
+    V1 <- inserir(V1, máx(V1[n], V2[m])+1)
+    V2 <- inserir(V2, V1[n+1])
+    B1 <- exibir(V1, n+1, 1)   
+    B2 <- exibir(V2, m+1, 1)      
+    para k <- 1 até (n+m) inclusive:
+        
+        se (V1[i] <= V2[j]):
+            V3 <- inserir(V3, V1[i]); i <- i+1;
+        senão:
+            V3 <- inserir(V3, V2[j]); j <- j+1;
+        B3 <- vetor(V3, [k])  
+        B1 <- exibir(V1, n+1, i)   
+        B2 <- exibir(V2, m+1, j)    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+inteiro oculto V1[6], V2[7], V3[*]
+visual B1, B2, B3 
+
+V1[0..5] <- [0, 5, 10, 19, 20, 31]
+V2[0..6] <- [0, 2, 5, 7, 20, 21, 29]
+V3 <- inserir(V3, 0) 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Merge(V1, V2, V3)

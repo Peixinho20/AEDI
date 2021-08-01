@@ -1,0 +1,22 @@
+--------------------------------------------------------
+# Elementos Distintos I em TuPy ~~
+# Implementação por Paulo E. D. Pinto ~~
+--------------------------------------------------------
+
+inteiro NumeroElementosDistintos(ref inteiro[] V):
+    #Dado: vetor V ordenado
+    inteiro i, n, ned
+    
+    n <- |V|
+    ned <- 0 
+    
+    para i <- 1 até n:
+                
+            se (V[i] != V[i-1]):   
+                ned <- ned+1 
+                
+    retornar ned
+
+inteiro A[*] <- [-1, 1, 1, 1, 8, 11, 11, 20, 25, 25, 31]
+
+escrever(NumeroElementosDistintos(A))

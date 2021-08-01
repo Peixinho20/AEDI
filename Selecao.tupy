@@ -1,0 +1,37 @@
+----------------------------------------------------------------
+# Ordenação por Seleção em TuPy ~~
+# Implementação por Paulo E. D. Pinto ~~
+----------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+visual oculto _indicadorC, _indicadorF <- " i -> 1:v", "j -> 1:v"
+
+visual exibir2(ref inteiro[] A, inteiro i, inteiro c, inteiro f):
+    retornar vetor(A, [i, c], juntar(["rankdir=\"BT\";", _indicadorC, \
+             cadeia(c), ":s;", _indicadorF, cadeia(f), ":s"]))    
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Seleção(ref inteiro[] V):
+    inteiro i, j, m
+    para i <- 1..|V|-1:
+        m <- i
+        B <- vetor(A, [i]) ~~
+        para j <- i+1..|V|:
+            se (V[j] < V[m]):   
+                m <- j  
+            B <- exibir2(V, m, i, j) ~~  
+        V[i], V[m] <- V[m], V[i]
+        B <- exibir2(V, m, i, m) ~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+inteiro oculto A[*], elem, i;
+visual B ~~
+
+elem <- nulo;  A <- inserir(A, elem);
+para i <-1 até 10 incl.:
+    elem <- inteiro_aleatório(10);  
+    A <- inserir(A, elem)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A[0..10] <- [0, 2, 7, 1, 8, 9, 10, 3, 5, 6, 4]
+B <- vetor(A) ~~
+Seleção(A)
+escrever(A)
