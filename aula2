@@ -1,0 +1,17 @@
+#AULA 2 (25/02/2021)
+
+#Ordenação por seleção:
+	#Arquivo Selecao.tupy
+		#Explicação e execução
+
+#Ordenação por inserção:
+	#Arquivo Insercao.tupy
+		#Explicação e execução
+
+#Análise de Algoritmos:
+	#Complexidade do Algoritmo
+		#Ordem por inserção:
+			-No pior caso a execução gera uma equação de segundo grau por que o vetor está ordenado no sentido decrescente
+			- No melhor caso a execucao gera uma equacao de primeiro grau por que o vetor está ordenado no sentindo crescente
+		
+		#

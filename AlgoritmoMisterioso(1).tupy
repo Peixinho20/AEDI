@@ -1,0 +1,47 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Inverte lista Encadeada em Tupy
+# Implementação por Paulo Eustáquio
+#
+# Implementar o Algoritmo Misterioso
+#---------------
+inteiro n <- 6
+tipo No:
+    inteiro c
+    No prox
+visual Va, Vb, Vp, Vr <- "", "", "", "" ~~
+
+CriaListas():
+    inteiro i; No p, q;
+    cab <- No();  cab.c <- inteiro_aleatório(0,100);  p <- cab;
+    para i <- 2 até n incl.:
+        p.prox <- No();  p <- p.prox;  p.c <- inteiro_aleatório(0,100);
+    p.prox <- nulo
+    caba <- No(); caba.c <- cab.c; p <- caba;  q <- cab;
+    para i <- 2 até n incl.:
+        p.prox <- No();  p <- p.prox;  q <- q.prox;  p.c <- q.c;
+    p.prox <- nulo
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+AlgoritmoMisterioso():
+    No p, q, r, t
+# p <- cab
+# r <- nulo
+# enquanto p != bulo:
+#   t <- p.prox
+#   p.prox <- r
+#   r <- p
+#   p <- t
+# Ao final de cada loop colocar as seguintes exibições
+#   Vr <- lista_encadeada(r, "c", "prox") ~~
+#   Vp <- lista_encadeada(p, "c", "prox") ~~  
+#   Vb <- lista_encadeada(cab, "c", "prox") ~~
+        
+#Ao final do procedimento colocar a seguinte exibição
+
+    Vb <- lista_encadeada(cab, "c", "prox") ~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+No cab, caba
+CriaListas()
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Va <- lista_encadeada(caba, "c", "prox") ~~
+Vb <- lista_encadeada(cab, "c", "prox") ~~
+AlgoritmoMisterioso()
